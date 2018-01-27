@@ -1,23 +1,49 @@
-jQuery(function ($) {
+jQuery(document).ready(function ($) {
     $(document).ready(function () {
-        $("#calc__texture").selectmenu({
+        var area = $('#calc__area-num');
+        var money = $('#calc__rub');
+        var pipe = $('#calc__pipe');
+        var lamp = $('#calc__lamp');
+        var slider = $("#calc__slider");
+        var texture = $("#calc__texture");
+
+        var texture_cur = window.wp_data.price_texture[0];
+
+        texture.selectmenu({
             icons: {button: "ui-icon-caret-1-s"},
-            width: 358,
-            classes: {
-                "ui-selectmenu-text": "calc__ui-selectmenu-text",
-                "ui-selectmenu-button": "calc__ui-button",
-                "ui-menu-item": "calc__ui-menu-item",
-                "ui-widget-content": "calc__ui-widget-content"
+            width: $('.calc__head').width() * 0.98,
+            change: function (event, data) {
+                texture_cur = window.wp_data.price_texture[data.item.index];
+                calculate();
             }
         });
 
-        $("#calc__slider").slider({
+        slider.slider({
             min: 0, max: 100, value: 20, range: "min",
-            classes: {
-                "ui-slider-horizontal": "calc__ui-slider-horizontal",
-                "ui-slider-handle": "calc__ui-slider-handle",
-                "ui-slider-range": "calc__ui-slider-range"
+            change: function (event, ui) {
+                area.text(ui.value);
+                calculate();
             }
         });
+
+        pipe.change(function () {
+            calculate();
+        });
+
+        lamp.change(function () {
+            calculate();
+        });
+
+        var calculate = function () {
+            var sum = 0;
+
+            sum += (parseInt(area.text()) || 0) * texture_cur;
+            sum += (parseInt(pipe.val()) || 0) * window.wp_data.price_pipes;
+            sum += (parseInt(lamp.val()) || 0) * window.wp_data.price_lamps;
+
+            money.text(sum);
+        };
+
+        calculate();
     });
 });

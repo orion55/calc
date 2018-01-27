@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&subset=cyrillic');
 
-body {
-    background-color: #cccccc;
-}
-
-.wrap {
-    max-width: 1000px;
-    padding-left: 3em;
-    padding-right: 3em;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .calc {
     width: 822px;
     overflow: hidden;
@@ -98,13 +86,13 @@ body {
     position: relative;
 }
 
-.calc__ui-slider-horizontal {
+#calc__slider {
     height: 2px;
     border: none !important;
     background: #e0e0e0;
 }
 
-#calc__slider span.calc__ui-slider-handle {
+#calc__slider > span.ui-slider-handle {
     position: absolute;
     border-radius: 100%;
     background: #ffc107;
@@ -196,9 +184,9 @@ input.calc__number {
     width: 95%;
 }
 
-.calc__number:focus {
+input.calc__number:focus {
     outline: 0;
-    border-color: #ffc107;
+    border-color: #D9A406;
 }
 
 .calc__total {
@@ -233,12 +221,104 @@ input.calc__number {
     font-weight: bold;
 }
 
-@media only screen and (min-device-width: 768px) and (max-width: 1199px) {
+#calc__texture-button {
+    display: flex;
+    cursor: pointer;
+    background: none;
+    border: 1px solid #ffc107;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 0.5em 0.6em;
+}
 
+#calc__texture-button > span.ui-icon.ui-icon-caret-1-s {
+    align-self: center;
+    color: #ffc107;
+    margin-right: 5px;
+}
+
+#calc__texture-button > span.ui-selectmenu-text {
+    margin-left: 5px;
+    color: black;
+    font-size: 17px;
+}
+
+.calc__area {
+    padding-bottom: 20px;
+}
+
+.calc__text--small {
+    text-transform: lowercase;
+}
+
+#calc__area-num {
+    padding-left: 10px;
+}
+
+@media only screen and (min-device-width: 768px) and (max-width: 1199px) {
+    .calc {
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 767px) {
     .calc {
         width: 100%;
+    }
+
+    .calc__picture {
+        display: none;
+    }
+
+    div.calc__section {
+        width: 100%;
+    }
+
+    #calc .calc__row--one > div:nth-child(2) {
+        display: none;
+    }
+
+    .calc__row--three {
+        flex-direction: column;
+        padding-bottom: 5px;
+    }
+
+    .calc__pipe, .calc__lamp {
+        width: 100%;
+    }
+
+    .calc__label {
+        padding-bottom: 5px;
+    }
+
+    input.calc__number {
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    .calc__head {
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+    }
+
+    .calc__row--one {
+        padding-bottom: 5px;
+    }
+
+    .calc__row--two {
+        padding-bottom: 25px;
+    }
+
+    #calc__texture-button {
+        margin-bottom: 5px;
+    }
+
+    .calc__intotal {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .calc__money {
+        padding-bottom: 5px;
     }
 }
